@@ -39,9 +39,14 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'GET /login' : 'UserController.getLogin',
-  'POST /login' : 'UserController.postLogin',
-  'POST /post' : 'UserController.postCreateUser',
-  'GET /show'  : 'UserController.show',
-  'GET /admin' : 'AdminController.index'
+    'GET /login' : 'UserController.getLogin',
+    'POST /login' : 'UserController.postLogin',
+    'POST /post' : 'UserController.postCreateUser',
+    'GET /show'  : 'UserController.show',
+    'GET /admin' : 'AdminController.index',
+    'GET /logout' : 'UserController.getLogout',
+
+    // Admin Route
+    'GET /admin/user' : 'AdminController.getUsers',
+    'GET /admin/user/new' : 'AdminController.getNewUser',
 };

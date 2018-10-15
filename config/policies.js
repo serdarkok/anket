@@ -16,7 +16,6 @@ module.exports.policies = {
   * (`true` allows public access)                                            *
   *                                                                          *
   ***************************************************************************/
-
   '*' : 'isFlash',
 /*  UserController : {
     show : 'isLogin',
@@ -24,7 +23,8 @@ module.exports.policies = {
   // '*': true,
 
   AdminController : {
-    index : 'isLogin',
+      '*' : ['isLogin', 'isFlash'],
+      index : ['isLogin', 'isFlash']
   }
 
   // '/show' : 'isLogin',

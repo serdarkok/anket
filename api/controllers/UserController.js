@@ -30,7 +30,10 @@ module.exports = {
         .then(function (veri) {
           if (veri && bcrypt.compareSync(pass, veri.password) === true)
           {
-            return res.send('Şifre Doğru');
+              sails.log(veri.id);
+              req.session.userId = veri.id;
+              req.session.user = true;
+              return res.redirect('/admin');
           }
           else {
             isFlash('Kullanıcı adı veya şifre hatalıdır, lütfen tekrar deneyiniz', 'Hata', req).then(function () {
@@ -69,6 +72,13 @@ module.exports = {
                           'data' : veri,
                         })
                     });
+  },
+
+  // Kullanıcı logout olursa burası çalışacak
+    getLogout : function (req, res) {
+      req.session.userId = null;
+      req.session.user = false;
+      return res.redirect('/login');
   }
 
 };
