@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&subset=latin-ext');
+body {
+    background-color: #0f0f0f;
+    font-family: 'Source Sans Pro', Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.login-wrapper {
+    margin-top: 50px;
+}
+
+.login-bg {
+    background-color: #0f0f0f;
+    background-image: url('/images/login-bg.jpg');
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-input {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.login-input label {
+    font-weight: 500;
+}
+
+.login-input .panel-body {
+    border: 1px solid rgba(154, 154, 154, 0.19);
+}
+
+.login-input input {
+    border-radius: 1px;
+}
+
+.login-input input:focus {
+    outline: 0;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.panel-basic-accent { border-width: 0px; border-top-color: 1px solid #ccc; border-top-width: 10px; border-radius: 10px;}
+
+.panel-accent-brand { border-top-color: #cb3837; }
+
+.panel-heading { position: relative;}
+
+.panel-accent-blue-2 { border-top-color: #2a79a7; }
+
+.panel-accent-warm-3 { border-top-color: #f09233; }
+
+.panel-accent-gray { border-top-color: #909090; }
+
+.btn-highlight-kirmizi { color: #fff;  background-color: #cb3837; outline: none; -webkit-transition: all 300ms ease-out; transition: all 300ms ease-out; }
+
+.btn-highlight-blue-2 { color: #fff;  background-color: #2a79a7; outline: none; -webkit-transition: all 300ms ease-out; transition: all 300ms ease-out; }
+
+.btn-highlight-warm-3 { color: #fff;  background-color: #f09233; outline: none; -webkit-transition: all 300ms ease-out; transition: all 300ms ease-out; }
+
+.btn-highlight-gray { color: #fff;  background-color: #909090; outline: none; -webkit-transition: all 300ms ease-out; transition: all 300ms ease-out; }
+
+.btn-highlight-kirmizi:hover { color: #FFFFFF; background-color: #a72121; }
+
+.btn-highlight-blue-2:hover { color: #FFFFFF; background-color: #2a79a7; }
+
+.btn-highlight-warm-3:hover { color: #FFFFFF; background-color: #aa2221; }
+
+.btn-highlight-gray:hover { color: #FFFFFF; background-color: #666; }
+
+.btn-group .btn.active,.btn-group .btn:active{color:#fff;background-color:#34495e}
+
+.plotter-h1 { line-height: 40px; font-weight: 700;}
+
+.ust-header {color: #FFFFFF; padding: 10px; font-weight: 500; background-color: #2a79a7;}
+
+.logout-button {position: absolute; right: 5px; bottom: 7px;}
+
+.admin-button {position: absolute; left: 5px; bottom: 7px;}
+
+
+/* MODAL POPUP CSS */
+
+.modal-header {
+  border-bottom: none;
+}
+
+.close {
+  font-size: 35px;
+  font-weight: normal;
+  color: #a51414;
+  opacity: .8;
+}
+
+.modal-title {
+  border-bottom: 1px solid #DFDFDF;
+  display: inline;
+}
+
+.modal-body {
+  padding-bottom: 20px;
+}
