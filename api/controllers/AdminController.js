@@ -12,6 +12,6 @@ module.exports = {
     },
     
     getNewUser : function (req, res) {
-        
+        return res.view('admin/newUser', {'layout' : 'admin/layout'});
     }
 }
