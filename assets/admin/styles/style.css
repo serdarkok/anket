@@ -36,6 +36,7 @@ html {
 ****************************/
 body {
   font-size: 1em;
+  color: #626262 !important;
 }
 a {
   color: #37a6c4;
@@ -153,6 +154,21 @@ a:hover {
 }
 .panel {
   overflow: hidden;
+}
+
+.panel-gray {
+  border-color: #e7e4e4;
+}
+
+.panel-gray .panel-heading {
+  color: #5d5d5d;
+  border-bottom-color: #e7e4e4;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ededed+70,f4f2f2+100 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #ededed 70%, #f4f2f2 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#ededed 70%,#f4f2f2 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffffff 0%,#ededed 70%,#f4f2f2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f4f2f2',GradientType=0 ); /* IE6-9 */
 }
 /****************************
 *      Border        *
@@ -320,7 +336,6 @@ a:hover {
 .content-format h6 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 700;
-  font-weight: bold;
   font-style: normal;
   color: rgba(0, 0, 0, 0.8);
   margin-top: 40px;
@@ -581,16 +596,6 @@ input:focus {
   outline: 0;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-}
-
-.panel-warning {
-  border-color: #566175;
-}
-
-.panel-warning>.panel-heading {
-  color: #ffffff;
-  background-color: #3354a6;
-  border-color: #566175;
 }
 
 @media only screen and (min-width: 992px) {

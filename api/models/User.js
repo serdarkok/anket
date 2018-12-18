@@ -21,12 +21,29 @@ module.exports = {
           type    : 'string',
           required : true
       },
+      phone : {
+          type     : 'string',
+          required : false
+      },
       password : {
         type      : 'string',
         required  : true
       },
-      company : {
-          type    : 'string'
+      group     : {
+        type        : 'number',
+        defaultsTo   : 0
+      },
+      authority : {
+          type      : 'number',
+          defaultsTo : 2
+      },
+      description : {
+          type     : 'string',
+          required : false
+      },
+      status        : {
+          type          : 'boolean',
+          defaultsTo    : true
       }
   },
 
