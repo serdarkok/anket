@@ -1,0 +1,105 @@
+<div class="col-md-8">
+  <div class="panel panel-gray">
+    <div class="panel-heading">
+      <h3 class="panel-title">Yeni Grup</h3>
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" method="post" action="/admin/group/new">
+        <input type="hidden" name="_csrf" id="_csrf" value="<%= _csrf %>" />
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Grup Adı</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="name" id="name" placeholder="boş olabilir" maxlength="30">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+            <div class="checkbox checkbox-default">
+              <input id="status" checked="checked" name="status" type="checkbox" value="1" />
+              <label for="status">Aktif</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+            <input type="button" id="saveButton" class="btn btn-sm btn-danger" name=submit" value="Kaydet">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="panel panel-gray">
+    <div class="panel-heading">
+      <h3 class="panel-title">Yardım</h3>
+    </div>
+    <div class="panel-body">
+      Değişecek
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modal-title"></h4>
+      </div>
+      <div class="modal-body" id="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm" data-dismiss="modal" aria-label="Kapat" id="modal-button"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  io.socket.on('event', function (data, err) {
+    if (data.modal) {
+      $('#modal-title').html(data.title);
+      $('#modal-body').html(data.message);
+      $('#myModal').modal('show');
+      if(data.type == 'err')
+      {
+        $('#modal-button').addClass('btn-danger');
+        $('#modal-button').html('Anladım');
+      }
+      else
+      {
+        $('#modal-button').addClass('btn-success');
+        $('#modal-button').html('Tamam');
+      }
+
+    }
+  });
+
+  /*
+  io.socket.get('/admin/group/new', function gotResponse(data, jwRes) {
+    console.log('Server responded with status code ' + jwRes.statusCode + ' and data: ', data);
+  });*/
+
+  $('#saveButton').click(function(e) {
+    e.preventDefault();
+    var name = $('#name').val();
+    var status =  $('#status').is(':checked') ? '1' : '0';
+    var csrf = $('#_csrf').val();
+/*
+    if (name.length < 3 ) {
+      alert('Soru Yazım Alanı boş gönderilemez veya 2 karakterden küçük soru sorulamaz, Lütfen kontrol ederek tekrar deneyiniz.');
+      $('.modal-body li').html('Soru Yazım Alanı boş gönderilemez veya 2 karakterden küçük soru sorulamaz, Lütfen kontrol ederek tekrar deneyiniz.');
+      $('#myModal').modal('show');
+    }
+    else {
+*/
+      io.socket.post('/admin/group/new', { 'name': name, 'status' : status, '_csrf': csrf  }, function (resData, jwRes) {
+        // console.log(jwRes.statusCode);
+        // console.log(resData);
+      });
+//    }
+  });
+</script>

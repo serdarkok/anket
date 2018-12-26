@@ -137,6 +137,9 @@ a:hover {
 .bk-fixed {
   background-attachment: fixed;
 }
+.bg-red {
+  background-color: #fff5f5 !important;
+}
 .hr-green {
   height: 2px;
   background: #37a6c4;

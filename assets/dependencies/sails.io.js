@@ -942,7 +942,7 @@ return new(b[["Active"].concat("Object").join("X")])("Microsoft.XMLHTTP")}catch(
          */
         self.on('connect', function socketConnected() {
           self._isConnecting = false;
-          consolog.noPrefix(
+/*          consolog.noPrefix(
             '\n' +
             '\n' +
             // '    |>    ' + '\n' +
@@ -959,7 +959,7 @@ return new(b[["Active"].concat("Object").join("X")])("Microsoft.XMLHTTP")}catch(
             // ' ⚓︎ (development mode)'
             // 'e.g. to send a GET request to Sails via WebSockets, run:'+ '\n' +
             // '`io.socket.get("/foo", function serverRespondedWith (body, jwr) { console.log(body); })`'+ '\n' +
-          );
+          );*/
         });
 
         self.on('disconnect', function() {
@@ -997,12 +997,12 @@ return new(b[["Active"].concat("Object").join("X")])("Microsoft.XMLHTTP")}catch(
             });
           }
 
-          consolog('====================================');
+/*          consolog('====================================');
           consolog('Socket was disconnected from Sails.');
           consolog('Usually, this is due to one of the following reasons:' + '\n' +
             ' -> the server ' + (self.url ? self.url + ' ' : '') + 'was taken down' + '\n' +
             ' -> your browser lost internet connectivity');
-          consolog('====================================');
+          consolog('====================================');*/
         });
 
         self.on('reconnecting', function(numAttempts) {

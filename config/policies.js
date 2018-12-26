@@ -25,6 +25,17 @@ module.exports.policies = {
   AdminController : {
       '*' : ['isLogin', 'isFlash'],
       index : ['isLogin', 'isFlash']
+  },
+
+  GroupController : {
+    '*' : ['isLogin', 'isFlash'],
+  },
+
+  UserController : {
+    '*' : ['isLogin', 'isFlash'],
+    getLogin : ['isGuest', 'isFlash'],
+    postLogin : ['isGuest', 'isFlash'],
+    getLogout : ['isGuest', 'isFlash'],
   }
 
   // '/show' : 'isLogin',

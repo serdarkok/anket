@@ -4,14 +4,4 @@ module.exports = {
   },
 
   // Kullanıcı işlemleri
-
-    getUsers : function (req, res) {
-        User.find().then(function (veri) {
-           return res.view('admin/getAllUsers', {'data' : veri, 'layout' : 'admin/layout'});
-        });
-    },
-    
-    getNewUser : function (req, res) {
-        return res.view('admin/newUser', {'layout' : 'admin/layout'});
-    }
 }

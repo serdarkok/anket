@@ -9,6 +9,12 @@ module.exports = {
   tableName : 'users',
 
   attributes: {
+      us_id : {
+        type        : 'string'
+      },
+      username : {
+        type : 'string'
+      },
       name : {
           type      : 'string',
           required  : true
@@ -41,10 +47,11 @@ module.exports = {
           type     : 'string',
           required : false
       },
-      status        : {
-          type          : 'boolean',
-          defaultsTo    : true
-      }
+      status : {
+        type        : 'ref',
+        columnType  : 'tinyint',
+        defaultsTo  : 1
+      },
   },
 
     toJSON : function() {

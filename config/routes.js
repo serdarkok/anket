@@ -42,11 +42,28 @@ module.exports.routes = {
     'GET /login' : 'UserController.getLogin',
     'POST /login' : 'UserController.postLogin',
     'POST /post' : 'UserController.postCreateUser',
-    'GET /show'  : 'UserController.show',
     'GET /admin' : 'AdminController.index',
     'GET /logout' : 'UserController.getLogout',
 
     // Admin Route
-    'GET /admin/user' : 'AdminController.getUsers',
-    'GET /admin/user/new' : 'AdminController.getNewUser',
+    'GET /admin/user' : 'UserController.getUsers',
+    'GET /admin/user/new' : 'UserController.getNewUsers',
+    'POST /admin/user/new' : 'UserController.postNewUsers',
+    'GET /admin/user/destroy/:id' : 'UserController.getUserDestroy',
+    'GET /admin/user/status/:id/:status' : 'UserController.getUserStatus',
+    'GET /admin/user/edit/:id' : 'UserController.getEditUsers',
+    'POST /admin/user/edit/:id' : 'UserController.postEditUsers',
+
+    // Admin Group Routes
+    'GET /admin/group/new'  : 'GroupController.getNewGroups',
+    'POST /admin/group/new' : 'GroupController.postNewGroups',
+    'GET /admin/group/socket' : 'GroupController.getSocketGroups',
+    'GET /admin/group' : 'GroupController.getGroups',
+    'GET /admin/group/destroy/:id' : 'GroupController.getGroupsDestroy',
+    'GET /admin/group/edit/:id' : 'GroupController.getEditGroups',
+    'POST /admin/group/edit/:id' : 'GroupController.postEditGroups',
+    'GET /admin/group/status/:id/:status' : 'GroupController.getStatusGroups',
+
+    // API
+    'GET /admin/api/osubscribe' : 'UserController.osubscribe',
 };

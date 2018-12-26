@@ -1,5 +1,5 @@
 <% if(flash) { %>
-  <div class="modal fade" tabindex="-1" role="dialog" id="myModal" aria-labelledby="gridSystemModalLabel">
+  <div class="modal fade" tabindex="-1" role="dialog" id="flashModal" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -14,7 +14,7 @@
   </div>
   <script type="text/javascript">
     $(window).on('load',function(){
-      $('#myModal').modal('show');
+      $('#flashModal').modal('show');
     });
   </script>
 <% } %>
