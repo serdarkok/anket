@@ -91,11 +91,8 @@ module.exports = {
     else if (__['password'] != __['password1'])
       {
         modal('Hata', 'Yazmış olduğunuz şifreler birbirinden farklıdır, lütfen kontrol ediniz!', 'err');
+        console.log(__);
       }
-
-      console.log(__);
-
-
     // Şifrelerin uyumu kontrol ediliyor
      else
     {
