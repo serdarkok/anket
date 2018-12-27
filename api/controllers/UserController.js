@@ -56,10 +56,10 @@ module.exports = {
     }
   },
 
-  getUsers : function (req, res) {
-    User.find().then(function (data) {
-      return res.view('admin/getUsers', {'data' : data, 'layout' : 'admin/layout'});
-    });
+  getUsers : async function (req, res) {
+    var data = await User.find().populate('group');
+    console.log(data);
+    return res.view('admin/getUsers', {'data' : data, 'layout' : 'admin/layout'});
   },
 
   getEditUsers : function(req, res) {
@@ -79,31 +79,41 @@ module.exports = {
     console.log(__);
 
     sails.sockets.join(req, 'room', function (err) {
-      if (err) return res.serverError(err);
+    if (err) return res.serverError(err);
     });
-    if (!__['name'] || !__['surname'] || !__['email']) {
+
+    if (!__['name'] || !__['surname'] || !__['email'])
+    {
       modal('Hata', 'Formda bulunan kırmızı renkteki alanları doldurmanız gerekmektedir!', 'err');
     }
-    else if (!__['password']) {
-      console.log('PASSWORD ALANI BOŞ DEĞİL');
-      delete __.password;
-    }
-    else if (__['password'] != __['password1'])
+    else {
+      if (!__['passwordUpdate'])
+      {
+        delete __.password;
+      }
+      else if (!__['password'])
+      {
+          modal('Hata', 'Şifre alanları boş geçilemez, eğer şifreyi değiştirmek istemiyorsanız lütfen Şifreyi Güncelle alanını seçmeyiniz ', 'err');
+          return res.send(ok);
+      }
+      else if (__['password'] != __['password1'])
       {
         modal('Hata', 'Yazmış olduğunuz şifreler birbirinden farklıdır, lütfen kontrol ediniz!', 'err');
-        console.log(__);
+        return res.send(ok);
       }
-    // Şifrelerin uyumu kontrol ediliyor
-     else
-    {
-      await User.updateOne({id : req.param('id')}).set(__)
+    }
+
+    if (!__['status']) __['status'] = 0;
+
+    await User.updateOne({id : req.param('id')}).set(__)
       .then(function () {
         modal('Bilgi', 'Kullanıcı güncellemesi başarılı bir şekilde yapıldı', 'info');
       })
       .catch(function (err) {
         modal('Hata', 'Kayıt sırasında bir sunucu hatası oluştu:<br/>' + err, 'err');
       })
-    }
+
+    // Şifrelerin uyumu kontrol ediliyor
 
     /*    User.create(__)
                     .then(function(veri){
@@ -168,6 +178,8 @@ module.exports = {
     }
     else
     {
+      if (!__['status']) __['status'] = 0;
+
       User.create(__).then(function () {
         modal('Bilgi', 'Kullanıcı kaydı başarılı bir şekilde yapıldı', 'info');
       }).catch(function (err) {

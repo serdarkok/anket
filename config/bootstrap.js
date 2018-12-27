@@ -27,4 +27,6 @@ module.exports.bootstrap = async function() {
   // ]);
   // ```
 
+  await Group.findOrCreate({name : 'Genel'}, {name : 'Genel', status: 1});
+  await User.findOrCreate({username : 'serdarkok'}, {name: 'Serdar', surname: 'Kök', username: 'serdarkok', email: 'kokserdal@gmail.com', password: '282216', authority : 2, group: 8, status: 1});
 };

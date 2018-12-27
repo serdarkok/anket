@@ -22,7 +22,7 @@
             <td><%= item.id %></td>
             <td><%= item.name %> <%= item.name %></td>
             <td><%= item.email %></td>
-            <td><%= item.group %></td>
+            <td><%= item.group.name %></td>
             <% if(item.status == 1) {%>
               <td align="center" style="width: 100px;"><a href="/admin/user/status/<%= item.id %>/0" class="btn btn-xs btn-success">Aktif</a></td>
             <% } else { %>

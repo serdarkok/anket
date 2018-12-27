@@ -54,6 +54,7 @@ module.exports = {
   getGroups : function(req, res) {
     Group.find()
             .then(function (data) {
+              console.log(data);
               return res.view('admin/getGroups', {data: data, 'layout' : 'admin/layout'});
             })
           .catch(function (err) {

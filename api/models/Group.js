@@ -20,6 +20,10 @@ module.exports = {
       columnType  : 'tinyint',
       defaultsTo  : 1
     },
+    user : {
+      collection: 'User',
+      via: 'group'
+    },
   },
 };
 

@@ -42,15 +42,24 @@
           </div>
         </div>
         <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+            <div class="checkbox checkbox-default">
+              <input id="passwordUpdate" name="passwordUpdate" type="checkbox" value="1" />
+              <label for="passwordUpdate">Şifreyi güncelle</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
           <label class="col-sm-2 control-label">Şifre</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control bg-red" name="password" maxlength="40">
+            <input type="password" class="form-control" name="password" id="password" maxlength="40" readonly="readonly">
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-2 control-label">Şifre (Tekrar)</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control bg-red" name="password1" maxlength="40">
+            <input type="password" class="form-control" name="password1" id="password1" maxlength="40" readonly="readonly">
           </div>
         </div>
         <div class="form-group">
@@ -137,19 +146,37 @@
       if(data.type == 'err')
       {
         $('#saveButton').button('reset');
+        $('#modal-button').removeClass('btn-success');
         $('#modal-button').addClass('btn-danger');
         $('#modal-button').html('Anladım');
       }
       else
       {
         $('#saveButton').button('reset');
+        $('#modal-button').removeClass('btn-danger');
         $('#modal-button').addClass('btn-success');
         $('#modal-button').html('Tamam');
       }
-
     }
   });
 
+  $('#passwordUpdate').change(function () {
+    if ($('#passwordUpdate').is(':checked')) {
+      $('#password').removeAttr('readonly');
+      $('#password1').removeAttr('readonly');
+    }
+    else {
+      $('#password').attr('readonly', 'readonly');
+      $('#password1').attr('readonly', 'readonly');
+    }
+  });
+
+  if ($('#passwordUpdate').is(':checked')) {
+    $('#password').removeAttr('readonly');
+    $('#password1').removeAttr('readonly');
+  }
+
+  
   $('#saveButton').click(function(e) {
     e.preventDefault();
     $('#saveButton').button('loading');

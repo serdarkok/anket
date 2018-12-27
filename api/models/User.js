@@ -36,12 +36,11 @@ module.exports = {
         required  : true
       },
       group     : {
-        type        : 'number',
-        defaultsTo   : 0
+        model         : 'group'
       },
       authority : {
-          type      : 'number',
-          defaultsTo : 2
+        type        : 'number',
+        defaultsTo  : 2
       },
       description : {
           type     : 'string',
