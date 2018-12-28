@@ -68,7 +68,7 @@
             <select class="form-control" name="group">
               <option value="">Lütfen seçiniz...</option>
               <% group.forEach(function (item) { %>
-                <option value="<%= item.id %>" <% if (data.group == item.id){%> selected <%}%>><%= item.name %></option>
+                <option value="<%= item.id %>" <% if (data.group === item.id){%> selected <%}%>><%= item.name %></option>
               <% }) %>
             </select>
           </div>
@@ -78,9 +78,9 @@
           <div class="col-sm-10">
             <select class="form-control" name="authority">
               <option value="">Lütfen seçiniz...</option>
-              <option value="0" <% if (data.group == 0){%> selected <%}%>>Kullanıcı</option>
-              <option value="1" <% if (data.group == 1){%> selected <%}%>>Editör</option>
-              <option value="2" <% if (data.group == 2){%> selected <%}%>>Admin</option>
+              <option value="0" <% if (data.authority == 0){%> selected <%}%>>Kullanıcı</option>
+              <option value="1" <% if (data.authority == 1){%> selected <%}%>>Editör</option>
+              <option value="2" <% if (data.authority == 2){%> selected <%}%>>Admin</option>
             </select>
           </div>
         </div>

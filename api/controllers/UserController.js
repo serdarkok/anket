@@ -67,7 +67,7 @@ module.exports = {
     Group.find({status : '1'}).then(function (data) {
           _group = data;
     });
-
+    console.log(_group);
     User.findOne({id: req.param('id')}).then(function (data) {
       return res.view('admin/editUser', {data: data, 'layout' : 'admin/layout', group : _group});
     });
@@ -82,36 +82,40 @@ module.exports = {
     if (err) return res.serverError(err);
     });
 
-    if (!__['name'] || !__['surname'] || !__['email'])
+    if (!__.name || !__.surname || !__.email)
     {
       modal('Hata', 'Formda bulunan kırmızı renkteki alanları doldurmanız gerekmektedir!', 'err');
     }
     else {
-      if (!__['passwordUpdate'])
+      if (__.passwordUpdate) {
+        if (!__.password)
+        {
+          modal('Hata', 'Şifre alanları boş geçilemez, eğer şifreyi değiştirmek istemiyorsanız lütfen Şifreyi Güncelle alanını seçmeyiniz ', 'err');
+          return res.send(ok);
+        }
+        if (__.password != __.password1)
+        {
+          modal('Hata', 'Yazmış olduğunuz şifreler birbirinden farklıdır, lütfen kontrol ediniz!', 'err');
+          return res.send(ok);
+        }
+      }
+      else
       {
         delete __.password;
       }
-      else if (!__['password'])
-      {
-          modal('Hata', 'Şifre alanları boş geçilemez, eğer şifreyi değiştirmek istemiyorsanız lütfen Şifreyi Güncelle alanını seçmeyiniz ', 'err');
-          return res.send(ok);
-      }
-      else if (__['password'] != __['password1'])
-      {
-        modal('Hata', 'Yazmış olduğunuz şifreler birbirinden farklıdır, lütfen kontrol ediniz!', 'err');
-        return res.send(ok);
-      }
+
+      console.log('Data: ' + __);
+
+      if (!__['status']) __['status'] = 0;
+
+      await User.updateOne({id : req.param('id')}).set(__)
+          .then(function () {
+             modal('Bilgi', 'Kullanıcı güncellemesi başarılı bir şekilde yapıldı', 'info');
+          })
+          .catch(function (err) {
+             modal('Hata', 'Kayıt sırasında bir sunucu hatası oluştu:<br/>' + err, 'err');
+          })
     }
-
-    if (!__['status']) __['status'] = 0;
-
-    await User.updateOne({id : req.param('id')}).set(__)
-      .then(function () {
-        modal('Bilgi', 'Kullanıcı güncellemesi başarılı bir şekilde yapıldı', 'info');
-      })
-      .catch(function (err) {
-        modal('Hata', 'Kayıt sırasında bir sunucu hatası oluştu:<br/>' + err, 'err');
-      })
 
     // Şifrelerin uyumu kontrol ediliyor
 
@@ -219,7 +223,7 @@ module.exports = {
   // Kullanıcı logout olursa burası çalışacak
     getLogout : function (req, res) {
       req.session.userId = null;
-      req.session.user = false;
+      req.session.user = null;
       return res.redirect('/login');
   },
 

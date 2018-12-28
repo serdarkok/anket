@@ -36,7 +36,7 @@ module.exports = {
         required  : true
       },
       group     : {
-        model         : 'group'
+        model     : 'group',
       },
       authority : {
         type        : 'number',
@@ -65,6 +65,17 @@ module.exports = {
          value.password = encryptedPassword;
          next();
       });
+    },
+
+  beforeUpdate : function (value, next) {
+    if (value.password) {
+      require('bcrypt').hash(value.password, 10, function passwordEncrypted(err, encryptedPassword) {
+        if (err) return next(err);
+        value.password = encryptedPassword;
+        next();
+      });
     }
+    next();
+  }
 
 };

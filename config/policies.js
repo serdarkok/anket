@@ -33,9 +33,9 @@ module.exports.policies = {
 
   UserController : {
     '*' : ['isLogin', 'isFlash'],
-    getLogin : ['isGuest', 'isFlash'],
-    postLogin : ['isGuest', 'isFlash'],
-    getLogout : ['isGuest', 'isFlash'],
+    getLogin : ['isFlash'],
+    postLogin : ['isFlash'],
+    getLogout : ['isFlash'],
   }
 
   // '/show' : 'isLogin',
